@@ -24,7 +24,7 @@ It will make `bing.so` in `build` directory.
 
 - BING class requires the path of trained model dir and some parameters
 - The output of `objectness` method is 2D-array of bounding boxes
-  - `[[x1, y1, x2, y2, score],...]`
+  - `[[min_x, min_y, max_x, max_y, score],...]`
   - Smaller `score` means it has much objectness
   - Resulting bounding boxes is already sorted in ascending order of `score`, so it's descending order of objectness
 - try `$ python scripts/test_bing.py`
