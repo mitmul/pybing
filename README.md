@@ -14,7 +14,9 @@ A Python wrapper of BING-Objectness in OpenCV (3.0.0-dev) implementation
 
 Modify some parameters to detect TBB, OpenCV, Boost, and Boost.NumPy, and then
 
-  $ bash build.sh
+
+    $ bash build.sh
+
 
 It will make `bing.so` in `build` directory.
 
@@ -28,6 +30,7 @@ It will make `bing.so` in `build` directory.
 - try `$ python scripts/test_bing.py`
 
 ```
+import cv2 as cv
 import bing
 
 b = 2  # base_window_size_quantization
