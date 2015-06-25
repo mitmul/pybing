@@ -3,19 +3,13 @@ project(bing)
 set(CMAKE_BUILD_TYPE "Release")
 set(CMAKE_CXX_FLAGS "-O3")
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/FindTBB.cmake)
+# include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/FindTBB.cmake)
+set(BoostNumPy_INCLUDE_DIR "BoostNumPy_INCLUDE_DIR" CACHE PATH "Path to Boost.NumPy include directory")
+set(BoostNumPy_LIBRARY_DIR "BoostNumPy_LIBRARY_DIR" CACHE PATH "Path to Boost.NumPy library directory")
 
 find_package(OpenCV REQUIRED)
 find_package(Boost COMPONENTS system filesystem python REQUIRED)
 find_package(PythonLibs REQUIRED)
-
-if (${Boost_NumPy_INCLUDE_DIR} STREQUAL "")
-  message(FATAL_ERROR "Boost_NumPy_INCLUDE_DIR is not set")
-endif()
-
-if (${Boost_NumPy_LIBRARY_DIR} STREQUAL "")
-  message(FATAL_ERROR "Boost_NumPy_LIBRARY_DIR is not set")
-endif()
 
 set(inc_dirs
   ${CMAKE_CURRENT_SOURCE_DIR}/src
