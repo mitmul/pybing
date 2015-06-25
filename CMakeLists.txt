@@ -3,7 +3,6 @@ project(bing)
 set(CMAKE_BUILD_TYPE "Release")
 set(CMAKE_CXX_FLAGS "-O3")
 
-# include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/FindTBB.cmake)
 set(BoostNumPy_INCLUDE_DIR "BoostNumPy_INCLUDE_DIR" CACHE PATH "Path to Boost.NumPy include directory")
 set(BoostNumPy_LIBRARY_DIR "BoostNumPy_LIBRARY_DIR" CACHE PATH "Path to Boost.NumPy library directory")
 
