@@ -9,33 +9,6 @@ namespace py = boost::python;
 namespace np = boost::numpy;
 namespace sa = cv::saliency;
 
-cv::Mat convert_to_cvmat(const np::ndarray& img) {
-  const long *shape   = img.get_shape();
-  const int   height  = shape[0];
-  const int   width   = shape[1];
-  const int   channel = shape[2];
-  unsigned char *data = reinterpret_cast<unsigned char *>(img.get_data());
-  cv::Mat img_mat(height, width, CV_8UC(channel));
-
-  img_mat.data = data;
-
-  return img_mat;
-}
-
-template<class T>
-np::ndarray convert_to_ndarray(const cv::Mat& img_mat) {
-  py::tuple shape = py::make_tuple(
-    img_mat.rows, img_mat.cols, img_mat.channels());
-  np::dtype   dtype = np::dtype::get_builtin<T>();
-  np::ndarray img   = np::zeros(shape, dtype);
-  T *data           = reinterpret_cast<T *>(img.get_data());
-
-  memcpy(data, img_mat.data,
-         img_mat.rows * img_mat.cols * img_mat.channels() * sizeof(T));
-
-  return img;
-}
-
 class BING {
 private:
 
@@ -110,6 +83,33 @@ public:
     }
 
     return result;
+  }
+
+  cv::Mat convert_to_cvmat(const np::ndarray& img) {
+    const long *shape   = img.get_shape();
+    const int   height  = shape[0];
+    const int   width   = shape[1];
+    const int   channel = shape[2];
+    unsigned char *data = reinterpret_cast<unsigned char *>(img.get_data());
+    cv::Mat img_mat(height, width, CV_8UC(channel));
+
+    img_mat.data = data;
+
+    return img_mat;
+  }
+
+  template<class T>
+  np::ndarray convert_to_ndarray(const cv::Mat& img_mat) {
+    py::tuple shape = py::make_tuple(
+      img_mat.rows, img_mat.cols, img_mat.channels());
+    np::dtype   dtype = np::dtype::get_builtin<T>();
+    np::ndarray img   = np::zeros(shape, dtype);
+    T *data           = reinterpret_cast<T *>(img.get_data());
+
+    memcpy(data, img_mat.data,
+           img_mat.rows * img_mat.cols * img_mat.channels() * sizeof(T));
+
+    return img;
   }
 };
 

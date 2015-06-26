@@ -32,6 +32,7 @@ cmake \
 ../
 
 make
+touch __init__.py
 
 cd ..
 
